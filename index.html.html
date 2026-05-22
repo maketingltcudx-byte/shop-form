@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ແບບຟອມບັນທຶກຂໍ້ມູນຮ້ານ</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans Lao','Phetsarath OT',Arial,sans-serif;background:#f4f6f9;color:#1a1a1a;font-size:14px}
+.page{max-width:1500px;margin:0 auto;padding:24px 16px}
+h1{font-size:20px;font-weight:700;margin-bottom:4px;color:#0F6E56}
+.subtitle{color:#666;font-size:13px;margin-bottom:20px}
+.top-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;background:#fff;border:1px solid #ddd;border-radius:10px;padding:14px 16px}
+.top-bar label{font-size:13px;color:#444;font-weight:600;white-space:nowrap}
+.top-bar select,.top-bar input{font-size:13px;padding:7px 10px;border:1px solid #ccc;border-radius:6px;outline:none}
+.top-bar select:focus,.top-bar input:focus{border-color:#1D9E75}
+.top-bar select{min-width:200px}
+.top-bar input{width:190px}
+.table-card{background:#fff;border:1px solid #ddd;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:1400px}
+thead tr:first-child th{background:#1D9E75;color:#fff;font-size:11px;font-weight:700;padding:8px 5px;text-align:center;white-space:nowrap;border-right:1px solid #17896a}
+thead tr:nth-child(2) th{background:#d4f0e5;color:#0a5c46;font-size:10px;font-weight:600;padding:5px 4px;text-align:center;border-bottom:2px solid #1D9E75;border-right:1px solid #b2ddd0}
+thead tr:nth-child(3) th{background:#eafaf4;color:#1D9E75;font-size:10px;padding:4px;text-align:center;border-bottom:2px solid #1D9E75;border-right:1px solid #c8ead9}
+td{padding:3px 3px;border-bottom:1px solid #f0f0f0;border-right:1px solid #f5f5f5;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#fafffe}
+tr:hover td{background:#f0faf6}
+td input[type=text],td input[type=number],td select{font-size:12px;padding:5px 5px;border:1px solid #e0e0e0;border-radius:4px;background:#fff;width:100%;outline:none}
+td input:focus,td select:focus{border-color:#1D9E75;background:#f5fff9}
+td input[type=number]{-moz-appearance:textfield}
+td input[type=number]::-webkit-outer-spin-button,td input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+.chk-wrap{display:flex;align-items:center;justify-content:center}
+.chk-wrap input[type=checkbox]{width:18px;height:18px;cursor:pointer;accent-color:#1D9E75}
+.td-num{width:30px;text-align:center;color:#999;font-size:11px;background:#f9f9f9}
+.td-del{width:28px;text-align:center}
+.del-btn{background:none;border:none;cursor:pointer;color:#ccc;font-size:20px;line-height:1;padding:2px 4px;border-radius:4px}
+.del-btn:hover{color:#e24b4a;background:#fff0f0}
+.bottom-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.add-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:9px 18px;border:2px dashed #1D9E75;border-radius:8px;background:#f0faf6;color:#0F6E56;cursor:pointer;font-weight:600}
+.add-btn:hover{background:#dff5ec}
+.submit-btn{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:700;padding:10px 28px;border-radius:8px;border:none;background:#1D9E75;color:#fff;cursor:pointer}
+.submit-btn:hover{background:#0F6E56}
+.submit-btn:disabled{background:#aaa;cursor:not-allowed}
+.row-count{font-size:12px;color:#999}
+.status-msg{font-size:13px;padding:12px 16px;border-radius:8px;margin-top:12px;display:none}
+.status-msg.success{background:#e6f9f2;color:#0a6644;border:1px solid #9de0c5;display:block}
+.status-msg.error{background:#fff0f0;color:#c0392b;border:1px solid #f5c0c0;display:block}
+.status-msg.loading{background:#f5f5f5;color:#555;border:1px solid #ddd;display:block}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>ແບບຟອມບັນທຶກລາຍລະອຽດຂໍ້ມູນຮ້ານ — 1 ບ້ານ 1 ຈຸດກະຈາຍ</h1>
+  <p class="subtitle">ເລືອກເມືອງ → ກຣອກຂໍ້ມູນ → ກົດ "ສົ່ງຂໍ້ມູນ"</p>
+
+  <div class="top-bar">
+    <label>ເມືອງ:</label>
+    <select id="citySelect">
+      <option value="">— ກະລຸນາເລືອກເມືອງ —</option>
+      <option value="M-Beng">ເມືອງແບງ</option>
+      <option value="M-Houn">ເມືອງຮຸນ</option>
+      <option value="M-ParkBeng">ເມືອງປາກແບງ</option>
+      <option value="M-Nga">ເມືອງງາ</option>
+      <option value="M-Namor">ເມືອງນາໝໍ້</option>
+      <option value="M-La">ເມືອງຫຼາ</option>
+    </select>
+    &nbsp;
+    <label>ຜູ້ກຣອກ:</label>
+    <input type="text" id="submitterName" placeholder="ຊື່ຜູ້ກຣອກຂໍ້ມູນ..."/>
+  </div>
+
+  <div class="table-card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="3">#</th>
+            <th rowspan="3">ຊື່ ແລະ ນາມສະກຸນ</th>
+            <th rowspan="3">ເບີຕິດຕໍ່</th>
+            <th rowspan="3">ບ້ານ</th>
+            <th rowspan="3">ເມືອງ</th>
+            <th rowspan="3">ປະເພດຮ້ານ</th>
+            <th rowspan="3">LAT</th>
+            <th rowspan="3">LONG</th>
+            <th colspan="6">ຈຳນວນຊື້/ຄັ້ງ</th>
+            <th colspan="2" rowspan="2">ຊື້ບັດຂາຍຈາກ</th>
+            <th colspan="2" rowspan="2">ຄາດຄະເນ</th>
+            <th rowspan="3">ເຫັນດີເປັນຕົວແທນ</th>
+            <th rowspan="3">ລັກສະນະຮ້ານ</th>
+            <th rowspan="3">ໝາຍເຫດ</th>
+            <th rowspan="3"></th>
+          </tr>
+          <tr>
+            <th colspan="2">LTC</th>
+            <th colspan="2">Unitel</th>
+            <th colspan="2">ETL</th>
+          </tr>
+          <tr>
+            <th>%</th><th>ຈຳນວນ</th>
+            <th>%</th><th>ຈຳນວນ</th>
+            <th>%</th><th>ຈຳນວນ</th>
+            <th>LTC</th><th>Dealer</th>
+            <th>ສົນໃຈ</th><th>ບໍ່ສົນໃຈ</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div style="display:flex;align-items:center;gap:14px">
+      <button class="add-btn" onclick="addRow()">＋ ເພີ່ມຮ້ານ</button>
+      <span class="row-count" id="rowCount">0 ຮ້ານ</span>
+    </div>
+    <button class="submit-btn" id="submitBtn" onclick="submitData()" disabled>
+      ▲ ສົ່ງຂໍ້ມູນໄປ Google Sheet
+    </button>
+  </div>
+  <div class="status-msg" id="statusMsg"></div>
+</div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQyJG0rA8aG4mru4-QLitlAiM37jK3dp2oo_4UUVhBoF0dYrX6rJpLBxM_MoiSx7cA/exec';
+
+const shopTypes = ['','ຮ້ານຂາຍຍ່ອຍ','ຮ້ານສັບພະສິນຄ້າ','ຮ້ານໄອທີ/ໂທລະສັບ','ຮ້ານຄ້າທົ່ວໄປ','ອື່ນໆ'];
+let rowId = 0;
+
+function sel(opts){
+  return '<select>'+opts.map(o=>`<option value="${o}">${o||'—'}</option>`).join('')+'</select>';
+}
+
+function addRow(){
+  const tbody = document.getElementById('tableBody');
+  rowId++;
+  const id = rowId;
+  const tr = document.createElement('tr');
+  tr.id = 'row-'+id;
+  tr.innerHTML = `
+    <td class="td-num">${tbody.rows.length+1}</td>
+    <td style="min-width:120px"><input type="text" placeholder="ຊື່ ນາມສະກຸນ"/></td>
+    <td style="min-width:90px"><input type="text" placeholder="020..."/></td>
+    <td style="min-width:70px"><input type="text" placeholder="ບ້ານ"/></td>
+    <td style="min-width:70px"><input type="text" placeholder="ເມືອງ"/></td>
+    <td style="min-width:110px">${sel(shopTypes)}</td>
+    <td style="min-width:75px"><input type="number" step="any" placeholder="LAT"/></td>
+    <td style="min-width:80px"><input type="number" step="any" placeholder="LONG"/></td>
+    <td style="min-width:48px"><input type="number" min="0" max="100" placeholder="%"/></td>
+    <td style="min-width:70px"><input type="number" min="0" placeholder="ຈຳນວນ"/></td>
+    <td style="min-width:48px"><input type="number" min="0" max="100" placeholder="%"/></td>
+    <td style="min-width:70px"><input type="number" min="0" placeholder="ຈຳນວນ"/></td>
+    <td style="min-width:48px"><input type="number" min="0" max="100" placeholder="%"/></td>
+    <td style="min-width:70px"><input type="number" min="0" placeholder="ຈຳນວນ"/></td>
+    <td style="min-width:60px"><div class="chk-wrap"><input type="checkbox"/></div></td>
+    <td style="min-width:65px"><div class="chk-wrap"><input type="checkbox"/></div></td>
+    <td style="min-width:65px"><div class="chk-wrap"><input type="checkbox"/></div></td>
+    <td style="min-width:72px"><div class="chk-wrap"><input type="checkbox"/></div></td>
+    <td style="min-width:80px"><div class="chk-wrap"><input type="checkbox"/></div></td>
+    <td style="min-width:100px"><input type="text" placeholder="ລັກສະນະ..."/></td>
+    <td style="min-width:90px"><input type="text" placeholder="ໝາຍເຫດ..."/></td>
+    <td class="td-del"><button class="del-btn" onclick="delRow(${id})">×</button></td>
+  `;
+  tbody.appendChild(tr);
+  updateRowNums();
+  updateBtn();
+}
+
+function delRow(id){
+  const el = document.getElementById('row-'+id);
+  if(el) el.remove();
+  updateRowNums();
+  updateBtn();
+}
+
+function updateRowNums(){
+  document.querySelectorAll('#tableBody tr').forEach((tr,i)=>{
+    tr.querySelector('td.td-num').textContent = i+1;
+  });
+  document.getElementById('rowCount').textContent =
+    document.querySelectorAll('#tableBody tr').length+' ຮ້ານ';
+}
+
+function updateBtn(){
+  const city = document.getElementById('citySelect').value;
+  const rows = document.querySelectorAll('#tableBody tr').length;
+  document.getElementById('submitBtn').disabled = !city || rows===0;
+}
+
+document.getElementById('citySelect').addEventListener('change', updateBtn);
+
+function getRowData(tr){
+  const inputs = tr.querySelectorAll('input[type=text], input[type=number]');
+  const selects = tr.querySelectorAll('select');
+  const checkboxes = tr.querySelectorAll('input[type=checkbox]');
+  // order: name,phone,village,city = inputs 0-3
+  // shopType = select 0
+  // lat,long = inputs 4-5
+  // ltcPct,ltcQty,uniPct,uniQty,etlPct,etlQty = inputs 6-11
+  // chk: ltcDealer(O), dealer(P), sonjai(Q), bosonjai(R), hendee(S)
+  return [
+    inputs[0].value.trim(),   // B: ຊື່
+    inputs[1].value.trim(),   // C: ເບີ
+    inputs[2].value.trim(),   // D: ບ້ານ
+    inputs[3].value.trim(),   // E: ເມືອງ
+    selects[0].value,         // F: ປະເພດ
+    inputs[4].value.trim(),   // G: LAT
+    inputs[5].value.trim(),   // H: LONG
+    inputs[6].value.trim(),   // I: %LTC
+    inputs[7].value.trim(),   // J: ຈຳLTC
+    inputs[8].value.trim(),   // K: %Unitel
+    inputs[9].value.trim(),   // L: ຈຳUnitel
+    inputs[10].value.trim(),  // M: %ETL
+    inputs[11].value.trim(),  // N: ຈຳETL
+    checkboxes[0].checked ? '✓' : '',  // O: LTC
+    checkboxes[1].checked ? '✓' : '',  // P: Dealer
+    checkboxes[2].checked ? '✓' : '',  // Q: ສົນໃຈ
+    checkboxes[3].checked ? '✓' : '',  // R: ບໍ່ສົນໃຈ
+    checkboxes[4].checked ? '✓' : '',  // S: ເຫັນດີ
+    inputs[12].value.trim(),  // T: ລັກສະນະ
+    inputs[13].value.trim(),  // U: ໝາຍເຫດ
+  ];
+}
+
+async function submitData(){
+  const city = document.getElementById('citySelect').value;
+  const submitter = document.getElementById('submitterName').value.trim();
+  const rows = document.querySelectorAll('#tableBody tr');
+  if(!city || rows.length===0) return;
+
+  const payload = { sheet: city, submitter, rows: Array.from(rows).map(getRowData) };
+  const btn = document.getElementById('submitBtn');
+  const msg = document.getElementById('statusMsg');
+  btn.disabled = true;
+  msg.className = 'status-msg loading';
+  msg.textContent = '⏳ ກຳລັງສົ່ງຂໍ້ມູນ...';
+
+  try {
+    const url = APPS_SCRIPT_URL + '?payload=' + encodeURIComponent(JSON.stringify(payload));
+    const res = await fetch(url);
+    const json = await res.json();
+    if(json.status==='ok'){
+      msg.className = 'status-msg success';
+      msg.textContent = '✓ ສົ່ງສຳເລັດ! ບັນທຶກ '+json.count+' ຮ້ານ ລົງ Sheet: '+city;
+      document.getElementById('tableBody').innerHTML = '';
+      updateRowNums();
+      addRow();
+    } else {
+      throw new Error(json.message||'ເກີດຂໍ້ຜິດພາດ');
+    }
+  } catch(e){
+    msg.className = 'status-msg error';
+    msg.textContent = '✗ ເກີດຂໍ້ຜິດພາດ: '+e.message;
+    btn.disabled = false;
+    updateBtn();
+  }
+}
+
+addRow();
+</script>
+</body>
+</html>
