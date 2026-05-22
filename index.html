@@ -2,261 +2,495 @@
 <html lang="lo">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ແບບຟອມບັນທຶກຂໍ້ມູນຮ້ານ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>LTC — ແບບຟອມບັນທຶກຂໍ້ມູນຮ້ານ</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
+:root {
+  --red: #E3192A;
+  --red-dark: #B8121F;
+  --red-light: #FDECEA;
+  --red-mid: #F5A0A7;
+  --white: #FFFFFF;
+  --gray-50: #FAFAFA;
+  --gray-100: #F4F4F4;
+  --gray-200: #E8E8E8;
+  --gray-400: #ADADAD;
+  --gray-600: #6B6B6B;
+  --gray-900: #1A1A1A;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans Lao','Phetsarath OT',Arial,sans-serif;background:#f4f6f9;color:#1a1a1a;font-size:14px}
-.page{max-width:1500px;margin:0 auto;padding:24px 16px}
-h1{font-size:20px;font-weight:700;margin-bottom:4px;color:#0F6E56}
-.subtitle{color:#666;font-size:13px;margin-bottom:20px}
-.top-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;background:#fff;border:1px solid #ddd;border-radius:10px;padding:14px 16px}
-.top-bar label{font-size:13px;color:#444;font-weight:600;white-space:nowrap}
-.top-bar select,.top-bar input{font-size:13px;padding:7px 10px;border:1px solid #ccc;border-radius:6px;outline:none}
-.top-bar select:focus,.top-bar input:focus{border-color:#1D9E75}
-.top-bar select{min-width:200px}
-.top-bar input{width:190px}
-.table-card{background:#fff;border:1px solid #ddd;border-radius:10px;overflow:hidden;margin-bottom:14px}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:1400px}
-thead tr:first-child th{background:#1D9E75;color:#fff;font-size:11px;font-weight:700;padding:8px 5px;text-align:center;white-space:nowrap;border-right:1px solid #17896a}
-thead tr:nth-child(2) th{background:#d4f0e5;color:#0a5c46;font-size:10px;font-weight:600;padding:5px 4px;text-align:center;border-bottom:2px solid #1D9E75;border-right:1px solid #b2ddd0}
-thead tr:nth-child(3) th{background:#eafaf4;color:#1D9E75;font-size:10px;padding:4px;text-align:center;border-bottom:2px solid #1D9E75;border-right:1px solid #c8ead9}
-td{padding:3px 3px;border-bottom:1px solid #f0f0f0;border-right:1px solid #f5f5f5;vertical-align:middle}
-tr:last-child td{border-bottom:none}
-tr:nth-child(even) td{background:#fafffe}
-tr:hover td{background:#f0faf6}
-td input[type=text],td input[type=number],td select{font-size:12px;padding:5px 5px;border:1px solid #e0e0e0;border-radius:4px;background:#fff;width:100%;outline:none}
-td input:focus,td select:focus{border-color:#1D9E75;background:#f5fff9}
-td input[type=number]{-moz-appearance:textfield}
-td input[type=number]::-webkit-outer-spin-button,td input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
-.chk-wrap{display:flex;align-items:center;justify-content:center}
-.chk-wrap input[type=checkbox]{width:18px;height:18px;cursor:pointer;accent-color:#1D9E75}
-.td-num{width:30px;text-align:center;color:#999;font-size:11px;background:#f9f9f9}
-.td-del{width:28px;text-align:center}
-.del-btn{background:none;border:none;cursor:pointer;color:#ccc;font-size:20px;line-height:1;padding:2px 4px;border-radius:4px}
-.del-btn:hover{color:#e24b4a;background:#fff0f0}
-.bottom-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.add-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:9px 18px;border:2px dashed #1D9E75;border-radius:8px;background:#f0faf6;color:#0F6E56;cursor:pointer;font-weight:600}
-.add-btn:hover{background:#dff5ec}
-.submit-btn{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:700;padding:10px 28px;border-radius:8px;border:none;background:#1D9E75;color:#fff;cursor:pointer}
-.submit-btn:hover{background:#0F6E56}
-.submit-btn:disabled{background:#aaa;cursor:not-allowed}
-.row-count{font-size:12px;color:#999}
-.status-msg{font-size:13px;padding:12px 16px;border-radius:8px;margin-top:12px;display:none}
-.status-msg.success{background:#e6f9f2;color:#0a6644;border:1px solid #9de0c5;display:block}
-.status-msg.error{background:#fff0f0;color:#c0392b;border:1px solid #f5c0c0;display:block}
-.status-msg.loading{background:#f5f5f5;color:#555;border:1px solid #ddd;display:block}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Thai',Arial,sans-serif;background:var(--gray-100);color:var(--gray-900);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* HEADER */
+.header{background:var(--red);padding:0;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(227,25,42,0.3)}
+.header-inner{max-width:600px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:12px}
+.logo{width:36px;height:36px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo span{font-size:13px;font-weight:700;color:var(--red);letter-spacing:-0.5px}
+.header-text h1{font-size:15px;font-weight:700;color:#fff;letter-spacing:0.2px}
+.header-text p{font-size:11px;color:rgba(255,255,255,0.75);margin-top:1px}
+.progress-bar{height:3px;background:rgba(255,255,255,0.2)}
+.progress-fill{height:100%;background:#fff;width:0%;transition:width 0.4s ease;border-radius:0 2px 2px 0}
+
+/* MAIN */
+.main{max-width:600px;margin:0 auto;padding:20px 16px 120px}
+
+/* SECTION CARD */
+.section-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden;transition:box-shadow 0.2s}
+.section-card:focus-within{box-shadow:0 4px 20px rgba(227,25,42,0.12)}
+.section-header{padding:14px 18px 12px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:10px}
+.section-icon{width:30px;height:30px;background:var(--red-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.section-title{font-size:13px;font-weight:600;color:var(--gray-900)}
+.section-sub{font-size:11px;color:var(--gray-400);margin-top:1px}
+.section-body{padding:16px 18px}
+
+/* FIELD */
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--gray-600);margin-bottom:6px;letter-spacing:0.3px}
+.field label .req{color:var(--red);margin-left:2px}
+.field input,.field select,.field textarea{
+  width:100%;padding:12px 14px;
+  border:1.5px solid var(--gray-200);
+  border-radius:var(--radius-sm);
+  font-size:14px;font-family:inherit;
+  background:var(--white);color:var(--gray-900);
+  outline:none;transition:border-color 0.2s,box-shadow 0.2s;
+  -webkit-appearance:none;appearance:none
+}
+.field input:focus,.field select:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(227,25,42,0.08)
+}
+.field input::placeholder{color:var(--gray-400)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ADADAD' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.field input[type=number]{-moz-appearance:textfield}
+.field input[type=number]::-webkit-outer-spin-button,
+.field input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+
+/* ROW 2 */
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+
+/* OPERATOR GROUP */
+.op-group{background:var(--gray-50);border-radius:var(--radius-sm);padding:12px;margin-bottom:10px;border:1px solid var(--gray-200)}
+.op-group:last-child{margin-bottom:0}
+.op-label{font-size:11px;font-weight:700;color:var(--gray-600);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.op-dot{width:8px;height:8px;border-radius:50%}
+.op-dot.ltc{background:#E3192A}
+.op-dot.unitel{background:#0066CC}
+.op-dot.etl{background:#00A651}
+
+/* CHECKBOX FIELD */
+.check-group{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.check-item{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);cursor:pointer;transition:all 0.15s;background:var(--white)}
+.check-item:hover{border-color:var(--red-mid);background:var(--red-light)}
+.check-item input[type=checkbox]{width:18px;height:18px;accent-color:var(--red);cursor:pointer;flex-shrink:0}
+.check-item span{font-size:13px;color:var(--gray-900);font-weight:500}
+.check-item.checked{border-color:var(--red);background:var(--red-light)}
+
+/* ENTRIES LIST */
+.entries-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.entries-count{font-size:13px;font-weight:600;color:var(--gray-600)}
+.entries-count span{color:var(--red);font-size:16px;font-weight:700}
+.entry-chip{display:inline-flex;align-items:center;gap:6px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:20px;padding:5px 12px 5px 8px;margin:0 4px 6px 0;font-size:12px;color:var(--gray-600)}
+.entry-chip .chip-num{width:20px;height:20px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.entry-chip .chip-del{background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:16px;line-height:1;padding:0;margin-left:2px}
+.entry-chip .chip-del:hover{color:var(--red)}
+.entries-wrap{min-height:20px}
+
+/* FORM PANEL */
+.form-panel{background:var(--gray-50);border:1.5px dashed var(--gray-200);border-radius:var(--radius-sm);padding:16px;margin-top:12px}
+.form-panel.active{background:var(--white);border-color:var(--red-mid);border-style:solid}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:8px;margin:16px 0}
+.divider hr{flex:1;border:none;border-top:1px solid var(--gray-200)}
+.divider span{font-size:11px;color:var(--gray-400);white-space:nowrap}
+
+/* CITY SELECTOR */
+.city-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.city-btn{padding:10px 8px;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);background:var(--white);font-family:inherit;font-size:13px;font-weight:500;color:var(--gray-600);cursor:pointer;text-align:center;transition:all 0.15s;line-height:1.3}
+.city-btn:hover{border-color:var(--red-mid);color:var(--red);background:var(--red-light)}
+.city-btn.selected{border-color:var(--red);background:var(--red);color:#fff;font-weight:600}
+
+/* BOTTOM ACTIONS */
+.bottom-actions{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--gray-200);padding:12px 16px;z-index:99;box-shadow:0 -4px 20px rgba(0,0,0,0.08)}
+.bottom-inner{max-width:600px;margin:0 auto;display:flex;gap:10px}
+.btn-add{flex:1;padding:13px;border:1.5px solid var(--red);border-radius:var(--radius-sm);background:var(--white);color:var(--red);font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.15s}
+.btn-add:hover{background:var(--red-light)}
+.btn-submit{flex:2;padding:13px;border:none;border-radius:var(--radius-sm);background:var(--red);color:#fff;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.15s;box-shadow:0 4px 12px rgba(227,25,42,0.3)}
+.btn-submit:hover{background:var(--red-dark)}
+.btn-submit:disabled{background:var(--gray-400);box-shadow:none;cursor:not-allowed}
+
+/* STATUS */
+.status-toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--gray-900);color:#fff;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:500;opacity:0;transition:all 0.3s;pointer-events:none;white-space:nowrap;z-index:200;max-width:90vw;text-align:center}
+.status-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.status-toast.success{background:#1A7A4A}
+.status-toast.error{background:var(--red-dark)}
+
+/* ANIMATE */
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.section-card{animation:slideUp 0.3s ease both}
+.section-card:nth-child(1){animation-delay:0.05s}
+.section-card:nth-child(2){animation-delay:0.1s}
+.section-card:nth-child(3){animation-delay:0.15s}
+.section-card:nth-child(4){animation-delay:0.2s}
 </style>
 </head>
 <body>
-<div class="page">
-  <h1>ແບບຟອມບັນທຶກລາຍລະອຽດຂໍ້ມູນຮ້ານ — 1 ບ້ານ 1 ຈຸດກະຈາຍ</h1>
-  <p class="subtitle">ເລືອກເມືອງ → ກຣອກຂໍ້ມູນ → ກົດ "ສົ່ງຂໍ້ມູນ"</p>
 
-  <div class="top-bar">
-    <label>ເມືອງ:</label>
-    <select id="citySelect">
-      <option value="">— ກະລຸນາເລືອກເມືອງ —</option>
-      <option value="M-Beng">ເມືອງແບງ</option>
-      <option value="M-Houn">ເມືອງຮຸນ</option>
-      <option value="M-ParkBeng">ເມືອງປາກແບງ</option>
-      <option value="M-Nga">ເມືອງງາ</option>
-      <option value="M-Namor">ເມືອງນາໝໍ້</option>
-      <option value="M-La">ເມືອງຫຼາ</option>
-    </select>
-    &nbsp;
-    <label>ຜູ້ກຣອກ:</label>
-    <input type="text" id="submitterName" placeholder="ຊື່ຜູ້ກຣອກຂໍ້ມູນ..."/>
-  </div>
-
-  <div class="table-card">
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th rowspan="3">#</th>
-            <th rowspan="3">ຊື່ ແລະ ນາມສະກຸນ</th>
-            <th rowspan="3">ເບີຕິດຕໍ່</th>
-            <th rowspan="3">ບ້ານ</th>
-            <th rowspan="3">ເມືອງ</th>
-            <th rowspan="3">ປະເພດຮ້ານ</th>
-            <th rowspan="3">LAT</th>
-            <th rowspan="3">LONG</th>
-            <th colspan="6">ຈຳນວນຊື້/ຄັ້ງ</th>
-            <th colspan="2" rowspan="2">ຊື້ບັດຂາຍຈາກ</th>
-            <th colspan="2" rowspan="2">ຄາດຄະເນ</th>
-            <th rowspan="3">ເຫັນດີເປັນຕົວແທນ</th>
-            <th rowspan="3">ລັກສະນະຮ້ານ</th>
-            <th rowspan="3">ໝາຍເຫດ</th>
-            <th rowspan="3"></th>
-          </tr>
-          <tr>
-            <th colspan="2">LTC</th>
-            <th colspan="2">Unitel</th>
-            <th colspan="2">ETL</th>
-          </tr>
-          <tr>
-            <th>%</th><th>ຈຳນວນ</th>
-            <th>%</th><th>ຈຳນວນ</th>
-            <th>%</th><th>ຈຳນວນ</th>
-            <th>LTC</th><th>Dealer</th>
-            <th>ສົນໃຈ</th><th>ບໍ່ສົນໃຈ</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
+<div class="header">
+  <div class="header-inner">
+    <div class="logo"><span>LTC</span></div>
+    <div class="header-text">
+      <h1>ແບບຟອມບັນທຶກຂໍ້ມູນຮ້ານ</h1>
+      <p>1 ບ້ານ 1 ຈຸດກະຈາຍ</p>
     </div>
   </div>
-
-  <div class="bottom-bar">
-    <div style="display:flex;align-items:center;gap:14px">
-      <button class="add-btn" onclick="addRow()">＋ ເພີ່ມຮ້ານ</button>
-      <span class="row-count" id="rowCount">0 ຮ້ານ</span>
-    </div>
-    <button class="submit-btn" id="submitBtn" onclick="submitData()" disabled>
-      ▲ ສົ່ງຂໍ້ມູນໄປ Google Sheet
-    </button>
-  </div>
-  <div class="status-msg" id="statusMsg"></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 </div>
+
+<div class="main">
+
+  <!-- STEP 1: ເມືອງ + ຜູ້ກຣອກ -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">📍</div>
+      <div><div class="section-title">ຂໍ້ມູນທົ່ວໄປ</div><div class="section-sub">ເລືອກເມືອງ ແລະ ຜູ້ກຣອກ</div></div>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>ເມືອງ <span class="req">*</span></label>
+        <div class="city-grid">
+          <button class="city-btn" data-city="M-Beng" onclick="selectCity(this)">ເມືອງແບງ</button>
+          <button class="city-btn" data-city="M-Houn" onclick="selectCity(this)">ເມືອງຮຸນ</button>
+          <button class="city-btn" data-city="M-ParkBeng" onclick="selectCity(this)">ເມືອງປາກແບງ</button>
+          <button class="city-btn" data-city="M-Nga" onclick="selectCity(this)">ເມືອງງາ</button>
+          <button class="city-btn" data-city="M-Namor" onclick="selectCity(this)">ເມືອງນາໝໍ້</button>
+          <button class="city-btn" data-city="M-La" onclick="selectCity(this)">ເມືອງຫຼາ</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>ຊື່ຜູ້ກຣອກຂໍ້ມູນ</label>
+        <input type="text" id="submitterName" placeholder="ຊື່ຜູ້ກຣອກ..."/>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOP ENTRIES -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">🏪</div>
+      <div><div class="section-title">ລາຍການຮ້ານ</div><div class="section-sub" id="shopSubtitle">ຍັງບໍ່ທັນເພີ່ມຮ້ານ</div></div>
+    </div>
+    <div class="section-body">
+      <div class="entries-wrap" id="entriesWrap"></div>
+
+      <div class="form-panel active" id="formPanel">
+        <div class="divider"><hr/><span>ຂໍ້ມູນຮ້ານ</span><hr/></div>
+
+        <!-- ຊື່ + ເບີ -->
+        <div class="row2">
+          <div class="field">
+            <label>ຊື່ - ນາມສະກຸນ <span class="req">*</span></label>
+            <input type="text" id="f_name" placeholder="ຊື່ຜູ້ຂາຍ..."/>
+          </div>
+          <div class="field">
+            <label>ເບີຕິດຕໍ່</label>
+            <input type="tel" id="f_phone" placeholder="020..."/>
+          </div>
+        </div>
+
+        <!-- ບ້ານ + ເມືອງ + ປະເພດ -->
+        <div class="row2">
+          <div class="field">
+            <label>ບ້ານ</label>
+            <input type="text" id="f_village" placeholder="ຊື່ບ້ານ..."/>
+          </div>
+          <div class="field">
+            <label>ເມືອງ</label>
+            <input type="text" id="f_city" placeholder="ເມືອງ..."/>
+          </div>
+        </div>
+        <div class="field">
+          <label>ປະເພດຮ້ານ</label>
+          <select id="f_type">
+            <option value="">— ເລືອກປະເພດ —</option>
+            <option>ຮ້ານຂາຍຍ່ອຍ</option>
+            <option>ຮ້ານສັບພະສິນຄ້າ</option>
+            <option>ຮ້ານໄອທີ/ໂທລະສັບ</option>
+            <option>ຮ້ານຄ້າທົ່ວໄປ</option>
+            <option>ອື່ນໆ</option>
+          </select>
+        </div>
+
+        <!-- GPS -->
+        <div class="row2">
+          <div class="field">
+            <label>LAT</label>
+            <input type="number" id="f_lat" step="any" placeholder="18.1234"/>
+          </div>
+          <div class="field">
+            <label>LONG</label>
+            <input type="number" id="f_long" step="any" placeholder="103.5678"/>
+          </div>
+        </div>
+
+        <div class="divider"><hr/><span>ຈຳນວນຊື້/ຄັ້ງ</span><hr/></div>
+
+        <!-- LTC -->
+        <div class="op-group">
+          <div class="op-label"><span class="op-dot ltc"></span>LTC</div>
+          <div class="row2">
+            <div class="field"><label>% ຊື້</label><input type="number" id="f_ltc_pct" min="0" max="100" placeholder="%"/></div>
+            <div class="field"><label>ຈຳນວນ/ຄັ້ງ</label><input type="number" id="f_ltc_qty" min="0" placeholder="ຈຳນວນ"/></div>
+          </div>
+        </div>
+
+        <!-- Unitel -->
+        <div class="op-group">
+          <div class="op-label"><span class="op-dot unitel"></span>Unitel</div>
+          <div class="row2">
+            <div class="field"><label>% ຊື້</label><input type="number" id="f_uni_pct" min="0" max="100" placeholder="%"/></div>
+            <div class="field"><label>ຈຳນວນ/ຄັ້ງ</label><input type="number" id="f_uni_qty" min="0" placeholder="ຈຳນວນ"/></div>
+          </div>
+        </div>
+
+        <!-- ETL -->
+        <div class="op-group">
+          <div class="op-label"><span class="op-dot etl"></span>ETL</div>
+          <div class="row2">
+            <div class="field"><label>% ຊື້</label><input type="number" id="f_etl_pct" min="0" max="100" placeholder="%"/></div>
+            <div class="field"><label>ຈຳນວນ/ຄັ້ງ</label><input type="number" id="f_etl_qty" min="0" placeholder="ຈຳນວນ"/></div>
+          </div>
+        </div>
+
+        <div class="divider"><hr/><span>ຊື້ບັດຈາກ</span><hr/></div>
+        <div class="check-group">
+          <label class="check-item" id="chk_ltc_wrap">
+            <input type="checkbox" id="f_ltc_dealer" onchange="toggleCheck('chk_ltc_wrap',this)"/>
+            <span>LTC</span>
+          </label>
+          <label class="check-item" id="chk_dealer_wrap">
+            <input type="checkbox" id="f_dealer" onchange="toggleCheck('chk_dealer_wrap',this)"/>
+            <span>Dealer</span>
+          </label>
+        </div>
+
+        <div class="divider"><hr/><span>ຄາດຄະເນ</span><hr/></div>
+        <div class="check-group">
+          <label class="check-item" id="chk_sonjai_wrap">
+            <input type="checkbox" id="f_sonjai" onchange="toggleCheck('chk_sonjai_wrap',this)"/>
+            <span>ສົນໃຈ</span>
+          </label>
+          <label class="check-item" id="chk_bosonjai_wrap">
+            <input type="checkbox" id="f_bosonjai" onchange="toggleCheck('chk_bosonjai_wrap',this)"/>
+            <span>ບໍ່ສົນໃຈ</span>
+          </label>
+        </div>
+
+        <div class="divider"><hr/><span>ເຫັນດີເປັນຕົວແທນ</span><hr/></div>
+        <div class="check-group" style="grid-template-columns:1fr">
+          <label class="check-item" id="chk_hendee_wrap">
+            <input type="checkbox" id="f_hendee" onchange="toggleCheck('chk_hendee_wrap',this)"/>
+            <span>ເຫັນດີເປັນຕົວແທນ</span>
+          </label>
+        </div>
+
+        <div class="divider"><hr/><span>ຂໍ້ມູນເພີ່ມເຕີມ</span><hr/></div>
+        <div class="field">
+          <label>ລັກສະນະຮ້ານ</label>
+          <input type="text" id="f_shoptype" placeholder="ລັກສະນະຮ້ານທີ່ມີຄວາມເປັນໄປໄດ້..."/>
+        </div>
+        <div class="field">
+          <label>ໝາຍເຫດ</label>
+          <input type="text" id="f_note" placeholder="ໝາຍເຫດ..."/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM ACTIONS -->
+<div class="bottom-actions">
+  <div class="bottom-inner">
+    <button class="btn-add" onclick="addEntry()">+ ເພີ່ມຮ້ານ</button>
+    <button class="btn-submit" id="submitBtn" onclick="submitData()" disabled>ສົ່ງຂໍ້ມູນ ▶</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="status-toast" id="toast"></div>
 
 <script>
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQyJG0rA8aG4mru4-QLitlAiM37jK3dp2oo_4UUVhBoF0dYrX6rJpLBxM_MoiSx7cA/exec';
 
-const shopTypes = ['','ຮ້ານຂາຍຍ່ອຍ','ຮ້ານສັບພະສິນຄ້າ','ຮ້ານໄອທີ/ໂທລະສັບ','ຮ້ານຄ້າທົ່ວໄປ','ອື່ນໆ'];
-let rowId = 0;
+let selectedCity = '';
+let entries = [];
 
-function sel(opts){
-  return '<select>'+opts.map(o=>`<option value="${o}">${o||'—'}</option>`).join('')+'</select>';
+function selectCity(btn) {
+  document.querySelectorAll('.city-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedCity = btn.dataset.city;
+  updateProgress();
+  updateSubmitBtn();
 }
 
-function addRow(){
-  const tbody = document.getElementById('tableBody');
-  rowId++;
-  const id = rowId;
-  const tr = document.createElement('tr');
-  tr.id = 'row-'+id;
-  tr.innerHTML = `
-    <td class="td-num">${tbody.rows.length+1}</td>
-    <td style="min-width:120px"><input type="text" placeholder="ຊື່ ນາມສະກຸນ"/></td>
-    <td style="min-width:90px"><input type="text" placeholder="020..."/></td>
-    <td style="min-width:70px"><input type="text" placeholder="ບ້ານ"/></td>
-    <td style="min-width:70px"><input type="text" placeholder="ເມືອງ"/></td>
-    <td style="min-width:110px">${sel(shopTypes)}</td>
-    <td style="min-width:75px"><input type="number" step="any" placeholder="LAT"/></td>
-    <td style="min-width:80px"><input type="number" step="any" placeholder="LONG"/></td>
-    <td style="min-width:48px"><input type="number" min="0" max="100" placeholder="%"/></td>
-    <td style="min-width:70px"><input type="number" min="0" placeholder="ຈຳນວນ"/></td>
-    <td style="min-width:48px"><input type="number" min="0" max="100" placeholder="%"/></td>
-    <td style="min-width:70px"><input type="number" min="0" placeholder="ຈຳນວນ"/></td>
-    <td style="min-width:48px"><input type="number" min="0" max="100" placeholder="%"/></td>
-    <td style="min-width:70px"><input type="number" min="0" placeholder="ຈຳນວນ"/></td>
-    <td style="min-width:60px"><div class="chk-wrap"><input type="checkbox"/></div></td>
-    <td style="min-width:65px"><div class="chk-wrap"><input type="checkbox"/></div></td>
-    <td style="min-width:65px"><div class="chk-wrap"><input type="checkbox"/></div></td>
-    <td style="min-width:72px"><div class="chk-wrap"><input type="checkbox"/></div></td>
-    <td style="min-width:80px"><div class="chk-wrap"><input type="checkbox"/></div></td>
-    <td style="min-width:100px"><input type="text" placeholder="ລັກສະນະ..."/></td>
-    <td style="min-width:90px"><input type="text" placeholder="ໝາຍເຫດ..."/></td>
-    <td class="td-del"><button class="del-btn" onclick="delRow(${id})">×</button></td>
-  `;
-  tbody.appendChild(tr);
-  updateRowNums();
-  updateBtn();
+function toggleCheck(wrapId, cb) {
+  document.getElementById(wrapId).classList.toggle('checked', cb.checked);
 }
 
-function delRow(id){
-  const el = document.getElementById('row-'+id);
-  if(el) el.remove();
-  updateRowNums();
-  updateBtn();
+function getFormData() {
+  return {
+    name: v('f_name'), phone: v('f_phone'),
+    village: v('f_village'), city: v('f_city'),
+    type: v('f_type'), lat: v('f_lat'), long: v('f_long'),
+    ltc_pct: v('f_ltc_pct'), ltc_qty: v('f_ltc_qty'),
+    uni_pct: v('f_uni_pct'), uni_qty: v('f_uni_qty'),
+    etl_pct: v('f_etl_pct'), etl_qty: v('f_etl_qty'),
+    ltc_dealer: chk('f_ltc_dealer'), dealer: chk('f_dealer'),
+    sonjai: chk('f_sonjai'), bosonjai: chk('f_bosonjai'),
+    hendee: chk('f_hendee'),
+    shoptype: v('f_shoptype'), note: v('f_note')
+  };
 }
 
-function updateRowNums(){
-  document.querySelectorAll('#tableBody tr').forEach((tr,i)=>{
-    tr.querySelector('td.td-num').textContent = i+1;
+function v(id){ return document.getElementById(id)?.value.trim() || '' }
+function chk(id){ return document.getElementById(id)?.checked ? '✓' : '' }
+
+function clearForm() {
+  ['f_name','f_phone','f_village','f_city','f_lat','f_long',
+   'f_ltc_pct','f_ltc_qty','f_uni_pct','f_uni_qty','f_etl_pct','f_etl_qty',
+   'f_shoptype','f_note'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.value = '';
   });
-  document.getElementById('rowCount').textContent =
-    document.querySelectorAll('#tableBody tr').length+' ຮ້ານ';
+  document.getElementById('f_type').value = '';
+  ['f_ltc_dealer','f_dealer','f_sonjai','f_bosonjai','f_hendee'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.checked = false;
+  });
+  ['chk_ltc_wrap','chk_dealer_wrap','chk_sonjai_wrap','chk_bosonjai_wrap','chk_hendee_wrap'].forEach(id => {
+    document.getElementById(id)?.classList.remove('checked');
+  });
 }
 
-function updateBtn(){
-  const city = document.getElementById('citySelect').value;
-  const rows = document.querySelectorAll('#tableBody tr').length;
-  document.getElementById('submitBtn').disabled = !city || rows===0;
+function addEntry() {
+  const d = getFormData();
+  if(!d.name){ showToast('ກະລຸນາໃສ່ຊື່ຮ້ານ', 'error'); return; }
+  entries.push(d);
+  renderEntries();
+  clearForm();
+  document.getElementById('f_name').focus();
+  updateProgress();
+  updateSubmitBtn();
+  showToast('✓ ເພີ່ມຮ້ານ "'+d.name+'" ແລ້ວ', 'success');
 }
 
-document.getElementById('citySelect').addEventListener('change', updateBtn);
-
-function getRowData(tr){
-  const inputs = tr.querySelectorAll('input[type=text], input[type=number]');
-  const selects = tr.querySelectorAll('select');
-  const checkboxes = tr.querySelectorAll('input[type=checkbox]');
-  // order: name,phone,village,city = inputs 0-3
-  // shopType = select 0
-  // lat,long = inputs 4-5
-  // ltcPct,ltcQty,uniPct,uniQty,etlPct,etlQty = inputs 6-11
-  // chk: ltcDealer(O), dealer(P), sonjai(Q), bosonjai(R), hendee(S)
-  return [
-    inputs[0].value.trim(),   // B: ຊື່
-    inputs[1].value.trim(),   // C: ເບີ
-    inputs[2].value.trim(),   // D: ບ້ານ
-    inputs[3].value.trim(),   // E: ເມືອງ
-    selects[0].value,         // F: ປະເພດ
-    inputs[4].value.trim(),   // G: LAT
-    inputs[5].value.trim(),   // H: LONG
-    inputs[6].value.trim(),   // I: %LTC
-    inputs[7].value.trim(),   // J: ຈຳLTC
-    inputs[8].value.trim(),   // K: %Unitel
-    inputs[9].value.trim(),   // L: ຈຳUnitel
-    inputs[10].value.trim(),  // M: %ETL
-    inputs[11].value.trim(),  // N: ຈຳETL
-    checkboxes[0].checked ? '✓' : '',  // O: LTC
-    checkboxes[1].checked ? '✓' : '',  // P: Dealer
-    checkboxes[2].checked ? '✓' : '',  // Q: ສົນໃຈ
-    checkboxes[3].checked ? '✓' : '',  // R: ບໍ່ສົນໃຈ
-    checkboxes[4].checked ? '✓' : '',  // S: ເຫັນດີ
-    inputs[12].value.trim(),  // T: ລັກສະນະ
-    inputs[13].value.trim(),  // U: ໝາຍເຫດ
-  ];
+function removeEntry(i) {
+  entries.splice(i, 1);
+  renderEntries();
+  updateProgress();
+  updateSubmitBtn();
 }
 
-async function submitData(){
-  const city = document.getElementById('citySelect').value;
-  const submitter = document.getElementById('submitterName').value.trim();
-  const rows = document.querySelectorAll('#tableBody tr');
-  if(!city || rows.length===0) return;
+function renderEntries() {
+  const wrap = document.getElementById('entriesWrap');
+  const sub = document.getElementById('shopSubtitle');
+  if(entries.length === 0){
+    wrap.innerHTML = '';
+    sub.textContent = 'ຍັງບໍ່ທັນເພີ່ມຮ້ານ';
+    return;
+  }
+  sub.textContent = 'ໄດ້ເພີ່ມ '+entries.length+' ຮ້ານແລ້ວ';
+  wrap.innerHTML = entries.map((e,i) =>
+    `<span class="entry-chip">
+      <span class="chip-num">${i+1}</span>
+      ${e.name}
+      <button class="chip-del" onclick="removeEntry(${i})">×</button>
+    </span>`
+  ).join('');
+}
 
-  const payload = { sheet: city, submitter, rows: Array.from(rows).map(getRowData) };
+function updateProgress() {
+  let score = 0;
+  if(selectedCity) score += 40;
+  if(entries.length > 0) score += 40;
+  const cur = getFormData();
+  if(cur.name) score += 20;
+  document.getElementById('progressFill').style.width = score + '%';
+}
+
+function updateSubmitBtn() {
+  const hasCity = !!selectedCity;
+  const hasEntries = entries.length > 0;
   const btn = document.getElementById('submitBtn');
-  const msg = document.getElementById('statusMsg');
+  btn.disabled = !(hasCity && hasEntries);
+  btn.textContent = hasEntries
+    ? `ສົ່ງຂໍ້ມູນ ${entries.length} ຮ້ານ ▶`
+    : 'ສົ່ງຂໍ້ມູນ ▶';
+}
+
+function showToast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'status-toast show ' + type;
+  setTimeout(() => { t.className = 'status-toast' }, 3000);
+}
+
+async function submitData() {
+  if(!selectedCity || entries.length === 0) return;
+
+  const payload = {
+    sheet: selectedCity,
+    submitter: v('submitterName'),
+    rows: entries.map(e => [
+      e.name, e.phone, e.village, e.city, e.type,
+      e.lat, e.long,
+      e.ltc_pct, e.ltc_qty,
+      e.uni_pct, e.uni_qty,
+      e.etl_pct, e.etl_qty,
+      e.ltc_dealer, e.dealer,
+      e.sonjai, e.bosonjai,
+      e.hendee, e.shoptype, e.note
+    ])
+  };
+
+  const btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  msg.className = 'status-msg loading';
-  msg.textContent = '⏳ ກຳລັງສົ່ງຂໍ້ມູນ...';
+  btn.textContent = '⏳ ກຳລັງສົ່ງ...';
+  showToast('⏳ ກຳລັງສົ່ງຂໍ້ມູນ...');
 
   try {
     const url = APPS_SCRIPT_URL + '?payload=' + encodeURIComponent(JSON.stringify(payload));
     const res = await fetch(url);
     const json = await res.json();
-    if(json.status==='ok'){
-      msg.className = 'status-msg success';
-      msg.textContent = '✓ ສົ່ງສຳເລັດ! ບັນທຶກ '+json.count+' ຮ້ານ ລົງ Sheet: '+city;
-      document.getElementById('tableBody').innerHTML = '';
-      updateRowNums();
-      addRow();
+    if(json.status === 'ok'){
+      showToast('✓ ສົ່ງສຳເລັດ '+json.count+' ຮ້ານ!', 'success');
+      entries = [];
+      renderEntries();
+      clearForm();
+      document.getElementById('progressFill').style.width = '40%';
+      updateSubmitBtn();
     } else {
-      throw new Error(json.message||'ເກີດຂໍ້ຜິດພາດ');
+      throw new Error(json.message || 'error');
     }
-  } catch(e){
-    msg.className = 'status-msg error';
-    msg.textContent = '✗ ເກີດຂໍ້ຜິດພາດ: '+e.message;
+  } catch(err) {
+    showToast('✗ ເກີດຂໍ້ຜິດພາດ: ' + err.message, 'error');
     btn.disabled = false;
-    updateBtn();
+    updateSubmitBtn();
   }
 }
 
-addRow();
+// live progress
+document.getElementById('f_name').addEventListener('input', updateProgress);
 </script>
 </body>
 </html>
