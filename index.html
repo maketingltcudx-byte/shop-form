@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ແບບຟອມບັນທຶກຂໍ້ມູນຮ້ານ</title>
+<title>ແບບຟອມບັນທຶກຂໍ້ມູນຮ້ານ — 1 ບ້ານ 1 ຈຸດກະຈາຍ</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -43,7 +43,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ─── Header ─── */
+  /* Header */
   .header {
     background: #fff;
     border-bottom: 1px solid var(--border);
@@ -62,7 +62,7 @@
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
   }
-  .logo svg { width: 20px; height: 20px; fill: #fff; }
+  .logo svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 2; }
   .header-text h1 { font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.2; }
   .header-text p  { font-size: 12px; color: var(--muted); margin-top: 1px; }
   .header-badge {
@@ -74,11 +74,9 @@
     white-space: nowrap;
     border: 1px solid rgba(208,2,27,0.15);
   }
-
-  /* ─── Progress bar ─── */
   .progress-bar {
     height: 3px; background: var(--border);
-    position: absolute; bottom: 0; left: 0; right: 0;
+    position: relative;
   }
   .progress-fill {
     height: 100%; background: var(--accent);
@@ -86,10 +84,10 @@
     border-radius: 0 2px 2px 0;
   }
 
-  /* ─── Container ─── */
+  /* Container */
   .container { max-width: 780px; margin: 0 auto; padding: 28px 16px 0; }
 
-  /* ─── Section label ─── */
+  /* Section label */
   .section-label {
     display: flex; align-items: center; gap: 8px;
     font-size: 11px; font-weight: 700; letter-spacing: 1.1px;
@@ -102,7 +100,7 @@
     background: var(--accent); flex-shrink: 0;
   }
 
-  /* ─── Card ─── */
+  /* Card */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -112,12 +110,9 @@
     box-shadow: var(--shadow-sm);
     transition: box-shadow 0.2s, border-color 0.2s;
   }
-  .card:focus-within {
-    border-color: var(--border-strong);
-    box-shadow: var(--shadow);
-  }
+  .card:focus-within { border-color: var(--border-strong); box-shadow: var(--shadow); }
 
-  /* ─── Grid ─── */
+  /* Grid */
   .grid   { display: grid; gap: 16px; }
   .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
@@ -127,11 +122,9 @@
     .header-badge { display: none; }
   }
 
-  /* ─── Field ─── */
+  /* Field */
   .field { display: flex; flex-direction: column; gap: 6px; }
-  .field label {
-    font-size: 13px; font-weight: 500; color: var(--text2);
-  }
+  .field label { font-size: 13px; font-weight: 500; color: var(--text2); }
   .field label .req { color: var(--accent); margin-left: 2px; }
   .field input, .field select, .field textarea {
     font-family: 'Noto Sans Lao', sans-serif;
@@ -144,9 +137,7 @@
     transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
     outline: none; width: 100%;
   }
-  .field input:hover, .field select:hover, .field textarea:hover {
-    border-color: var(--border-strong);
-  }
+  .field input:hover, .field select:hover, .field textarea:hover { border-color: var(--border-strong); }
   .field input:focus, .field select:focus, .field textarea:focus {
     border-color: var(--accent);
     background: #fff;
@@ -154,8 +145,15 @@
   }
   .field input::placeholder, .field textarea::placeholder { color: #bfc0cc; }
   .field textarea { resize: vertical; min-height: 80px; }
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888a9a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+    appearance: none;
+  }
 
-  /* suffix */
+  /* Suffix input */
   .input-sfx { position: relative; }
   .input-sfx input { padding-right: 34px; }
   .input-sfx .sfx {
@@ -163,7 +161,10 @@
     font-size: 13px; color: var(--muted); pointer-events: none; font-weight: 500;
   }
 
-  /* ─── Operator blocks ─── */
+  /* Hint */
+  .field-hint { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* Operator blocks */
   .op-block { border-radius: 10px; padding: 16px; }
   .op-ltc    { background: var(--ltc-bg);    border: 1.5px solid rgba(26,86,219,0.18); }
   .op-unitel { background: var(--unitel-bg); border: 1.5px solid rgba(217,119,6,0.18); }
@@ -177,11 +178,9 @@
   .op-ltc    .op-name { color: var(--ltc); }
   .op-unitel .op-name { color: var(--unitel); }
   .op-etl    .op-name { color: var(--etl); }
-
-  /* ─── Divider ─── */
   .op-gap { height: 12px; }
 
-  /* ─── Checkbox pill ─── */
+  /* Checkbox pill */
   .check-group { display: flex; flex-wrap: wrap; gap: 8px; }
   .check-pill {
     display: flex; align-items: center; gap: 7px;
@@ -202,14 +201,8 @@
     transition: all 0.12s; flex-shrink: 0;
   }
   .check-pill:hover { border-color: var(--accent); color: var(--accent); }
-  .check-pill.checked {
-    border-color: var(--accent);
-    background: var(--accent-light);
-    color: var(--accent);
-  }
-  .check-pill.checked .pill-box {
-    background: var(--accent); border-color: var(--accent);
-  }
+  .check-pill.checked { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+  .check-pill.checked .pill-box { background: var(--accent); border-color: var(--accent); }
   .check-pill.checked .pill-box::after {
     content: '';
     display: block; width: 8px; height: 5px;
@@ -217,7 +210,7 @@
     transform: rotate(-45deg) translateY(-1px);
   }
 
-  /* ─── Toggle switch ─── */
+  /* Toggle switch */
   .toggle-wrap {
     display: inline-flex; align-items: center; gap: 10px;
     background: var(--surface2);
@@ -242,15 +235,11 @@
     transition: transform 0.2s;
     box-shadow: 0 1px 3px rgba(0,0,0,0.15);
   }
-  .toggle-wrap.on {
-    border-color: var(--accent);
-    background: var(--accent-light);
-    color: var(--accent);
-  }
+  .toggle-wrap.on { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
   .toggle-wrap.on .toggle-track { background: var(--accent); }
   .toggle-wrap.on .toggle-track::after { transform: translateX(16px); }
 
-  /* ─── GPS button ─── */
+  /* GPS button */
   .gps-btn {
     font-family: 'Noto Sans Lao', sans-serif;
     display: inline-flex; align-items: center; gap: 6px;
@@ -263,8 +252,9 @@
   }
   .gps-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
   .gps-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .gps-status { font-size: 12px; color: var(--muted); margin-top: 6px; }
 
-  /* ─── Submit ─── */
+  /* Submit */
   .submit-wrap { padding: 4px 0 0; }
   .submit-btn {
     font-family: 'Noto Sans Lao', sans-serif;
@@ -281,7 +271,7 @@
   .submit-btn:active { transform: scale(0.99); }
   .submit-btn:disabled { background: #e0a0a8; cursor: not-allowed; box-shadow: none; }
 
-  /* ─── Toast ─── */
+  /* Toast */
   .toast {
     position: fixed; bottom: 24px; left: 50%;
     transform: translateX(-50%) translateY(100px);
@@ -302,7 +292,7 @@
   .toast.success { border-left: 3px solid var(--success); }
   .toast.error   { border-left: 3px solid var(--error); }
 
-  /* ─── Spinner ─── */
+  /* Spinner */
   .spinner {
     width: 16px; height: 16px;
     border: 2px solid rgba(255,255,255,0.35);
@@ -315,7 +305,7 @@
 </head>
 <body>
 
-<div class="header" style="position:sticky;top:0;z-index:100;">
+<div class="header">
   <div class="header-inner">
     <div class="logo">
       <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4"/></svg>
@@ -340,6 +330,7 @@
           <label>ເມືອງ <span class="req">*</span></label>
           <select id="city" required>
             <option value="">— ເລືອກເມືອງ —</option>
+            <option value="M-xay">ເມືອງ ໄຊ</option>
             <option value="M-Beng">ເມືອງ ແບງ</option>
             <option value="M-Houn">ເມືອງ ຮຸນ</option>
             <option value="M-ParkBeng">ເມືອງ ປາກແບງ</option>
@@ -349,16 +340,8 @@
           </select>
         </div>
         <div class="field">
-          <label>ປະເພດຮ້ານ <span class="req">*</span></label>
-          <select id="shopType" required>
-            <option value="">— ເລືອກປະເພດ —</option>
-            <option value="ຮ້ານຂາຍເຄື່ອງຍ່ອຍ">ຮ້ານຂາຍເຄື່ອງຍ່ອຍ</option>
-            <option value="ຮ້ານຂາຍເຄື່ອງໂທລະສັບ">ຮ້ານຂາຍເຄື່ອງໂທລະສັບ</option>
-            <option value="ຮ້ານຂາຍໄອສ/ນ້ຳດື່ມ">ຮ້ານຂາຍໄອສ/ນ້ຳດື່ມ</option>
-            <option value="ຮ້ານຂາຍຢາ">ຮ້ານຂາຍຢາ</option>
-            <option value="ຮ້ານຂາຍສິນຄ້າທົ່ວໄປ">ຮ້ານຂາຍສິນຄ້າທົ່ວໄປ</option>
-            <option value="ອື່ນໆ">ອື່ນໆ</option>
-          </select>
+          <label>ປະເພດຮ້ານ</label>
+          <input type="text" id="shopType" placeholder="ພິມປະເພດຮ້ານ...">
         </div>
         <div class="field">
           <label>ຊື່ ແລະ ນາມສະກຸນ <span class="req">*</span></label>
@@ -381,17 +364,18 @@
       <div class="grid grid-2">
         <div class="field">
           <label>LAT (ເສັ້ນຂະໜານ)</label>
-          <input type="number" id="lat" step="any" placeholder="18.123456">
+          <input type="text" id="lat" placeholder="18.123456">
         </div>
         <div class="field">
           <label>LONG (ເສັ້ນຂຽງ)</label>
-          <input type="number" id="lng" step="any" placeholder="102.654321">
+          <input type="text" id="lng" placeholder="102.654321">
         </div>
       </div>
-      <button type="button" class="gps-btn" onclick="getGPS()">
+      <button type="button" class="gps-btn" id="gpsBtn" onclick="getGPS()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8" stroke-dasharray="2 3"/></svg>
         ດຶງ GPS ອັດຕະໂນມັດ
       </button>
+      <div class="gps-status" id="gpsStatus"></div>
     </div>
 
     <!-- ── ສ່ວນແບ່ງຕະຫຼາດ ── -->
@@ -409,7 +393,7 @@
           </div>
           <div class="field">
             <label>ຈຳນວນຊື້/ຄັ້ງ (ກີບ)</label>
-            <input type="number" id="ltcAmt" min="0" placeholder="200000">
+            <input type="text" id="ltcAmt" placeholder="200.000" oninput="fmtInput(this)">
           </div>
         </div>
       </div>
@@ -426,7 +410,7 @@
           </div>
           <div class="field">
             <label>ຈຳນວນຊື້/ຄັ້ງ (ກີບ)</label>
-            <input type="number" id="unitelAmt" min="0" placeholder="200000">
+            <input type="text" id="unitelAmt" placeholder="200.000" oninput="fmtInput(this)">
           </div>
         </div>
       </div>
@@ -443,10 +427,11 @@
           </div>
           <div class="field">
             <label>ຈຳນວນຊື້/ຄັ້ງ (ກີບ)</label>
-            <input type="number" id="etlAmt" min="0" placeholder="200000">
+            <input type="text" id="etlAmt" placeholder="200.000" oninput="fmtInput(this)">
           </div>
         </div>
       </div>
+      <p class="field-hint" style="margin-top:12px">ຕົວຢ່າງ: ໃສ່ 6 → 6% &nbsp;|&nbsp; ໃສ່ 200000 → 200.000 ກີບ</p>
     </div>
 
     <!-- ── ຊື້ບັດຂາຍຈາກ ── -->
@@ -466,7 +451,7 @@
       </div>
     </div>
 
-    <!-- ── ຄາດຄະເນ ── -->
+    <!-- ── ຄາດຄະເນ ແລະ ເຫັນດີ ── -->
     <div class="section-label"><span class="dot"></span>ຄາດຄະເນ ແລະ ເຫັນດີ</div>
     <div class="card">
       <div class="grid grid-2">
@@ -527,7 +512,7 @@
 </div>
 
 <script>
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx0-xEExkd9pDUGVUX-yblNEBzJSTKVz9qazcKyHL7osKPx-lkIkdNw--GesVKfQ6RnLA/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwjg-ZEs6UMitxyND25QQ_f5pBJtwAqQejKi7vh8DOiaDt-mR9tIfetW7RPipeyL4vag/exec";
 
   function togglePill(el) {
     const cb = el.querySelector('input[type=checkbox]');
@@ -543,24 +528,55 @@
     updateProgress();
   }
 
-  function fmtLao(val) {
-    if (!val && val !== 0) return '';
-    return Number(val).toLocaleString('de-DE');
+  // Format number: 200000 → 200.000 (Lao style, dot as thousands sep)
+  function fmtInput(input) {
+    const raw = input.value.replace(/\./g, '').replace(/\D/g, '');
+    input.dataset.raw = raw;
+    if (!raw) { input.value = ''; return; }
+    input.value = parseInt(raw, 10).toLocaleString('de-DE');
+  }
+
+  function fmtLao(id) {
+    const el = document.getElementById(id);
+    const raw = el.dataset.raw || el.value.replace(/\./g, '').replace(/\D/g, '');
+    if (!raw) return '';
+    return parseInt(raw, 10).toLocaleString('de-DE');
   }
 
   function getGPS() {
-    if (!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(pos => {
-      document.getElementById('lat').value = pos.coords.latitude.toFixed(6);
-      document.getElementById('lng').value = pos.coords.longitude.toFixed(6);
-      updateProgress();
-    });
+    const btn = document.getElementById('gpsBtn');
+    const status = document.getElementById('gpsStatus');
+    if (!navigator.geolocation) {
+      status.textContent = '⚠ ອຸປະກອນບໍ່ຮອງຮັບ GPS';
+      return;
+    }
+    btn.innerHTML = '<div class="spinner" style="border-top-color:var(--accent);border-color:var(--border-strong);border-top-color:var(--accent)"></div>ກຳລັງດຶງ...';
+    btn.disabled = true;
+    status.textContent = '';
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        document.getElementById('lat').value = pos.coords.latitude.toFixed(6);
+        document.getElementById('lng').value = pos.coords.longitude.toFixed(6);
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px"><path d="M20 6L9 17l-5-5"/></svg>ດຶງສຳເລັດ';
+        btn.disabled = false;
+        status.textContent = '✓ ໄດ້ພິກັດແລ້ວ (±' + Math.round(pos.coords.accuracy) + 'm)';
+        status.style.color = 'var(--success)';
+        updateProgress();
+      },
+      err => {
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8" stroke-dasharray="2 3"/></svg>ດຶງ GPS ອັດຕະໂນມັດ';
+        btn.disabled = false;
+        status.textContent = '⚠ ບໍ່ສາມາດດຶງ GPS ໄດ້';
+        status.style.color = 'var(--error)';
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
   }
 
   function updateProgress() {
-    const fields = ['city','fullname','phone','village','shopType'];
+    const fields = ['city','fullname','phone','village'];
     const filled = fields.filter(id => document.getElementById(id).value.trim()).length;
-    document.getElementById('progressFill').style.width = Math.round((filled/fields.length)*100) + '%';
+    document.getElementById('progressFill').style.width = Math.round((filled / fields.length) * 100) + '%';
   }
 
   document.querySelectorAll('input,select,textarea').forEach(el => {
@@ -568,7 +584,7 @@
     el.addEventListener('change', updateProgress);
   });
 
-  function showToast(msg, type='success') {
+  function showToast(msg, type = 'success') {
     const t = document.getElementById('toast');
     document.getElementById('toastMsg').textContent = msg;
     t.className = `toast ${type} show`;
@@ -582,28 +598,31 @@
     btn.innerHTML = '<div class="spinner"></div>ກຳລັງສົ່ງ...';
 
     const cityEl = document.getElementById('city');
+
     const data = {
-      sheet:         cityEl.value,
-      fullname:      document.getElementById('fullname').value,
-      phone:         document.getElementById('phone').value,
-      village:       document.getElementById('village').value,
-      city:          cityEl.options[cityEl.selectedIndex].text,
-      shopType:      document.getElementById('shopType').value,
-      lat:           document.getElementById('lat').value,
-      lng:           document.getElementById('lng').value,
-      ltcPct:        document.getElementById('ltcPct').value ? document.getElementById('ltcPct').value + '%' : '',
-      ltcAmt:        fmtLao(document.getElementById('ltcAmt').value),
-      unitelPct:     document.getElementById('unitelPct').value ? document.getElementById('unitelPct').value + '%' : '',
-      unitelAmt:     fmtLao(document.getElementById('unitelAmt').value),
-      etlPct:        document.getElementById('etlPct').value ? document.getElementById('etlPct').value + '%' : '',
-      etlAmt:        fmtLao(document.getElementById('etlAmt').value),
-      buyFromLTC:    document.getElementById('chkLTC').checked ? 'TRUE' : 'FALSE',
-      buyFromDealer: document.getElementById('chkDealer').checked ? 'TRUE' : 'FALSE',
-      interested:    document.getElementById('chkInterested').checked ? 'TRUE' : 'FALSE',
-      notInterested: document.getElementById('chkNotInterested').checked ? 'TRUE' : 'FALSE',
-      agree:         document.getElementById('toggleAgree').classList.contains('on') ? 'TRUE' : 'FALSE',
-      shopChar:      document.getElementById('shopChar').value,
-      remark:        document.getElementById('remark').value,
+      sheetTab: cityEl.value,
+      data: {
+        name:          document.getElementById('fullname').value,
+        phone:         document.getElementById('phone').value,
+        village:       document.getElementById('village').value,
+        city:          cityEl.options[cityEl.selectedIndex].text,
+        shopType:      document.getElementById('shopType').value,
+        lat:           document.getElementById('lat').value,
+        long:          document.getElementById('lng').value,
+        ltcPct:        document.getElementById('ltcPct').value ? document.getElementById('ltcPct').value + '%' : '',
+        ltcAmt:        fmtLao('ltcAmt'),
+        unitelPct:     document.getElementById('unitelPct').value ? document.getElementById('unitelPct').value + '%' : '',
+        unitelAmt:     fmtLao('unitelAmt'),
+        etlPct:        document.getElementById('etlPct').value ? document.getElementById('etlPct').value + '%' : '',
+        etlAmt:        fmtLao('etlAmt'),
+        buyFromLTC:    document.getElementById('chkLTC').checked ? '✓' : '',
+        buyFromDealer: document.getElementById('chkDealer').checked ? '✓' : '',
+        estInterested:    document.getElementById('chkInterested').checked ? '✓' : '',
+        estNotInterested: document.getElementById('chkNotInterested').checked ? '✓' : '',
+        agree:         document.getElementById('toggleAgree').classList.contains('on') ? 'ເຫັນດີ' : 'ບໍ່ເຫັນດີ',
+        shopCharacter: document.getElementById('shopChar').value,
+        remark:        document.getElementById('remark').value,
+      }
     };
 
     try {
@@ -618,6 +637,8 @@
       document.getElementById('toggleAgree').classList.remove('on');
       document.getElementById('toggleLabel').textContent = 'ບໍ່ເຫັນດີ';
       document.getElementById('progressFill').style.width = '0%';
+      document.getElementById('gpsStatus').textContent = '';
+      document.querySelectorAll('[data-raw]').forEach(el => el.dataset.raw = '');
     } catch(err) {
       showToast('ມີຂໍ້ຜິດພາດ ກະລຸນາລອງໃໝ່', 'error');
     } finally {
@@ -626,5 +647,30 @@
     }
   });
 </script>
+
+<!--
+=== GOOGLE APPS SCRIPT (Extensions > Apps Script) ===
+
+function doPost(e) {
+  var d = JSON.parse(e.postData.contents);
+  var ss = SpreadsheetApp.openById('1UlLVjp9ycLHN8MJM-CogfjRR_NyVAVEI606z66JDe80');
+  var sheet = ss.getSheetByName(d.sheet);
+  if (!sheet) return ContentService.createTextOutput('Sheet not found');
+  var lastRow = sheet.getLastRow();
+  var seq = lastRow < 3 ? 1 : lastRow - 2;
+  sheet.appendRow([
+    seq, d.fullname, d.phone, d.village, d.city, d.shopType,
+    d.lat, d.lng,
+    d.ltcPct, d.ltcAmt,
+    d.unitelPct, d.unitelAmt,
+    d.etlPct, d.etlAmt,
+    d.buyFromLTC, d.buyFromDealer,
+    d.interested, d.notInterested,
+    d.agree, d.shopChar, d.remark
+  ]);
+  return ContentService.createTextOutput('OK');
+}
+-->
+
 </body>
 </html>
